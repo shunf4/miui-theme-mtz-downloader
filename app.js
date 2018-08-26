@@ -24,7 +24,15 @@ const UIVersion = {
     "MIUI5": 2,
     "MIUI6/7": 3,
     "MIUI8/9": 5,
-    "MIUI10": 7
+    "MIUI10": 8
+};
+
+const MIUICode = {
+    "MIUI4": "V4",
+    "MIUI5": "V5",
+    "MIUI6/7": "V6",
+    "MIUI8/9": "V8",
+    "MIUI10": "V10"
 };
 
 const Cookie = {
@@ -67,7 +75,7 @@ function createZhutiRequest(
         },
     };
 
-    console.log("[Request]", options);
+    console.log("\n[Request]", options);
 
     request(options, function(error, res, body) {
         if (error) {
@@ -101,16 +109,19 @@ function generateDownload(
 ) {
     
     const options = {
-        url: `http://thm.market.xiaomi.com/thm/download/v2/${path.replace(/.*\/detail\//g, "")}`,
+        url: `http://thm.market.xiaomi.com/thm/download/v2/${path.replace(/.*\/detail\//g, "")}?capability=v%3a${UIVersion[config.MIUIVersion]}%2cvw&miuiUIVersion=${MIUICode[config.MIUIVersion]}`,
         method: 'GET',
         followRedirect: true,
         timeout: 3000,
         headers: {
-            Cookie: convertObject2CookieStr(Cookie)
+            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+            "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,ja-JP;q=0.5",
+            Cookie: convertObject2CookieStr(Cookie),
+            "User-Agent": userAgent
         },
     };
 
-    console.log("[Request Download]", options);
+    console.log("\n[Request Download]", options);
 
     request(options, function(error, res, body) {
         if (error) {
@@ -130,6 +141,7 @@ function generateDownload(
                 console.error("Response invalid:", body);
                 errorCallback("Response invalid: " + body);
             } else {
+                console.log(body);
                 callback(parsed.apiData.downloadUrl);
             }
         }
