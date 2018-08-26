@@ -93,8 +93,8 @@ function createZhutiRequest(
                 }
             }
 
-            if ($("#J-downWrap")) {
-                $("#J-downWrap").prepend(`<button type="button" style="display: inline-block;background: url(http://resource.xiaomi.net/miuimarket/btn_push1.png) 0 -40px no-repeat;width: 136px;height: 36px;line-height: 36px;text-align: center;margin-right: 20px;color: #fff;border: none;cursor: pointer;float: left;" onclick="javascript:location.href='/getDownloadUrl${path}'">下载</button>`);
+            if ($(".mod-action")) {
+                $(".mod-action").prepend(`<button type="button" style="display: inline-block;background: url(http://resource.xiaomi.net/miuimarket/btn_push1.png) 0 -40px no-repeat;width: 136px;height: 36px;line-height: 36px;text-align: center;margin-right: 20px;color: #fff;border: none;cursor: pointer;float: left;" onclick="javascript:location.href='/getDownloadUrl${path}'">下载</button>`);
             }
             callback($.html());
         }
