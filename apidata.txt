@@ -1,9 +1,0 @@
-{
-	"apiCode" : 0,
-	"apiData" : 
-	{
-		"downloadUrl" : "http://f8.market.xiaomi.com/download/ThemeMarket/0ccca05a755cf4eb4017ac41320efd4c3f959ac73/Android+P-1.0.0.8.mtz",
-		"fileHash" : "00e7cd3bc08d280ba33a15c09c48b575d39715d0",
-		"fileSize" : 38258280
-	}
-}
